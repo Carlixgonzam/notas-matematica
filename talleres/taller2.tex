@@ -31,11 +31,11 @@ Sean $A,B,C$ y $D$ conjuntos. Compare las siguientes parejas de conjuntos. Si so
 \end{question}
 
 \begin{solution}
-\textbf{(a)} cumplo con la igualdad
+\textbf{(a)} Voy a mostrar que se cumple la igualdad
 \[
 \boxed{\Pow(A)\cap\Pow(B)=\Pow(A\cap B)}.
 \]
-se recuerda que $X\in\Pow(A)$ si y sólo si $X\subseteq A$. Para un conjunto arbitrario $X$ tenemos
+Recuerdo que $X\in\Pow(A)$ si y sólo si $X\subseteq A$. Para un conjunto arbitrario $X$ tengo
 \begin{align*}
 X\in\Pow(A)\cap\Pow(B)
 &\Longleftrightarrow X\in\Pow(A)\text{ y }X\in\Pow(B)\\
@@ -43,13 +43,13 @@ X\in\Pow(A)\cap\Pow(B)
 &\Longleftrightarrow X\subseteq A\cap B\\
 &\Longleftrightarrow X\in\Pow(A\cap B).
 \end{align*}
-Así, por extensionalidad, concluimos que $\Pow(A)\cap\Pow(B)=\Pow(A\cap B)$.
+Como esto vale para todo $X$, por extensionalidad concluyo que $\Pow(A)\cap\Pow(B)=\Pow(A\cap B)$.
 
-\textbf{(b)} Se cumple la igualdad
+\textbf{(b)} También se cumple la igualdad
 \[
 \boxed{(A\triangle B)\times C=(A\times C)\triangle(B\times C)}.
 \]
-se recuerda que $X\triangle Y=(X\setminus Y)\cup(Y\setminus X)$. Por álgebra de conjuntos,
+Recuerdo que $X\triangle Y=(X\setminus Y)\cup(Y\setminus X)$, así que uso álgebra de conjuntos:
 \begin{align*}
 (A\triangle B)\times C
 &=[(A\setminus B)\cup(B\setminus A)]\times C\\
@@ -59,20 +59,20 @@ se recuerda que $X\triangle Y=(X\setminus Y)\cup(Y\setminus X)$. Por álgebra de
 &=(A\times C)\triangle(B\times C).
 \end{align*}
 
-\textbf{(c)} En general,
+\textbf{(c)} Aquí, en general, lo que tengo es
 \[
 \boxed{(A\cup C)\triangle(B\cup D)
 \subseteq(A\triangle B)\cup(C\triangle D)},
 \]
-y la inclusión puede ser propia.
+y noto que la inclusión puede ser propia.
 
 Supongamos que $x\in(A\cup C)\triangle(B\cup D)$. Si
 $x\in(A\cup C)\setminus(B\cup D)$, entonces $x\in A\cup C$, pero
 $x\notin B$ y $x\notin D$. Si $x\in A$, entonces
 $x\in A\setminus B\subseteq A\triangle B$; si $x\in C$, entonces
-$x\in C\setminus D\subseteq C\triangle D$. Por tanto,
+$x\in C\setminus D\subseteq C\triangle D$. En cualquier caso,
 $x\in(A\triangle B)\cup(C\triangle D)$. El caso
-$x\in(B\cup D)\setminus(A\cup C)$ es análogo. Esto demuestra la inclusión.
+$x\in(B\cup D)\setminus(A\cup C)$ es análogo, y con eso ya tengo la inclusión.
 
 Para ver que puede ser propia, tomo
 \[
@@ -86,13 +86,13 @@ mientras que
 \[
 (A\cup C)\triangle(B\cup D)=\{1\}\triangle\{1\}=\varnothing.
 \]
-Por tanto, en este ejemplo la inclusión es propia.
+Con este ejemplo veo que la inclusión sí puede ser propia.
 
-\textbf{(d)} Se cumple la igualdad
+\textbf{(d)} Aquí también se cumple la igualdad
 \[
 \boxed{A\setminus(B\cup C)=(A\setminus B)\setminus C}.
 \]
-Considerando $A,B,C$ como subconjuntos de un universo, por las leyes de De Morgan,
+Pensando en $A,B,C$ como subconjuntos de un universo, aplico las leyes de De Morgan:
 \begin{align*}
 A\setminus(B\cup C)
 &=A\cap(B\cup C)^c\\
@@ -113,37 +113,37 @@ Si es asociativa, demuéstrelo. Si no, dé un contraejemplo.
 \end{question}
 
 \begin{solution}
-La diferencia simétrica sí es asociativa:
+Creo que la diferencia simétrica sí es asociativa:
 \[
 \boxed{A\triangle(B\triangle C)=(A\triangle B)\triangle C}.
 \]
-como  $x\in X\triangle Y$ si y sólo si $x$ pertenece exactamente a uno de $X$ y $Y$. defino
+Sé que $x\in X\triangle Y$ si y sólo si $x$ pertenece exactamente a uno de $X$ y $Y$, así que defino
 \[
 E:=\{x:x\text{ pertenece a un número impar de los conjuntos }A,B,C\}.
 \]
-Para tres conjuntos, esto significa que $x$ pertenece exactamente a uno de ellos o a los tres. En forma explícita,
+Para tres conjuntos, esto significa que $x$ pertenece exactamente a uno de ellos o a los tres. Escrito de forma explícita,
 \begin{align*}
 E={}&[A\setminus(B\cup C)]\cup[B\setminus(A\cup C)]
 \cup[C\setminus(A\cup B)]\\
 &\cup(A\cap B\cap C).
 \end{align*}
 
-Un elemento $x$ pertenece a $A\triangle(B\triangle C)$ si $x\in A$ y
+Ahora reviso $A\triangle(B\triangle C)$: un elemento $x$ pertenece a este conjunto si $x\in A$ y
 $x\notin B\triangle C$, o si $x\notin A$ y $x\in B\triangle C$.
 En el primer caso, $x$ pertenece a $A$ y a cero o dos de los conjuntos $B,C$;
 en el segundo, no pertenece a $A$ y pertenece exactamente a uno de $B,C$.
-En ambos casos pertenece a un número impar de $A,B,C$. El razonamiento es reversible, por lo que
+En ambos casos, $x$ pertenece a un número impar de $A,B,C$, y el razonamiento se puede devolver, así que
 \[
 A\triangle(B\triangle C)=E.
 \]
-De manera análoga, $(A\triangle B)\triangle C=E$. Así, por extensionalidad, ambos conjuntos son iguales.
+El mismo argumento, aplicado en otro orden, me da $(A\triangle B)\triangle C=E$. Como ambos coinciden con $E$, por extensionalidad son iguales.
 
-La misma descripción funciona con cuatro conjuntos:
+Me doy cuenta de que la misma descripción funciona con cuatro conjuntos:
 \[
 \boxed{(A\triangle D)\triangle(B\triangle C)
 =\{x:x\text{ pertenece a un número impar de }A,B,C,D\}}.
 \]
-En este caso, ``un número impar'' significa exactamente uno o exactamente tres.
+Aquí, ``un número impar'' significa exactamente uno o exactamente tres.
 \end{solution}
 
 \begin{question}
@@ -170,26 +170,26 @@ Para este punto, recuerde cómo construíamos la biyección entre conjuntos dada
 
 \begin{solution}
 
-\textbf{Definición de la biyección.} Sean $f:A\to B$ y $g:B\to A$ inyectivas.
-Dado $y\in A\cup B$, decimos que $x$ es el ancestro de $y$ si
+\textbf{Definición de la biyección.} Tomo $f:A\to B$ y $g:B\to A$ inyectivas.
+Dado $y\in A\cup B$, digo que $x$ es el ancestro de $y$ si
 \[
 y\in B\text{ y }f(x)=y,
 \qquad\text{o si}\qquad
 y\in A\text{ y }g(x)=y.
 \]
 Como $f$ y $g$ son inyectivas, cada elemento tiene a lo sumo un ancestro inmediato.
-Decimos que $a\in A$ tiene profundidad $k$ si su cadena
+Digo que $a\in A$ tiene profundidad $k$ si su cadena
 \[
 a=x_0,x_1,\ldots,x_k
 \]
 tiene $k$ ancestros propios y $x_k$ no tiene ancestro. Si la cadena no termina,
-la profundidad es infinita. Definimos
+la profundidad es infinita. Con esto defino
 \begin{align*}
 X_{\mathrm{par}}&:=\{a\in A:a\text{ tiene profundidad par}\},\\
 X_{\mathrm{impar}}&:=\{a\in A:a\text{ tiene profundidad impar}\},\\
 X_{\infty}&:=\{a\in A:a\text{ tiene profundidad infinita}\}.
 \end{align*}
-La biyección está dada por
+Con esto, la biyección queda
 \[
 \boxed{
 \phi(a)=
@@ -199,12 +199,12 @@ g^{-1}(a),&a\in X_{\mathrm{impar}}.
 \end{cases}}
 \]
 
-\textbf{(a)} Para $n\geq1$, la cadena de ancestros de $a_n$ es
+\textbf{(a)} Para $n\geq1$, calculo la cadena de ancestros de $a_n$:
 \[
 a_n,\ b_{n-1},\ a_{n-2},\ b_{n-3},\ldots
 \]
-y su profundidad es $n-1$. Si $n$ es impar, $n-1$ es par y usamos $f$;
-si $n$ es par, $n-1$ es impar y usamos $g^{-1}$. Por tanto,
+y su profundidad es $n-1$. Si $n$ es impar, $n-1$ es par y me toca usar $f$;
+si $n$ es par, $n-1$ es impar y me toca usar $g^{-1}$. Entonces,
 \[
 \boxed{
 \phi(a_n)=
@@ -214,48 +214,48 @@ b_{n-1},&n\text{ par}.
 \end{cases}}
 \]
 
-\textbf{(b)} En este punto $0\in\N$. La función $f$ es inyectiva: si
-$2^m3^n=2^r3^s$, la unicidad de la factorización prima implica que $m=r$ y
-$n=s$. La función $g$ también es inyectiva, pues
+\textbf{(b)} Aquí $0\in\N$. Reviso que $f$ es inyectiva: si
+$2^m3^n=2^r3^s$, la unicidad de la factorización prima me da $m=r$ y
+$n=s$. También reviso que $g$ es inyectiva, pues
 \[
 g(k)=g(\ell)\Longrightarrow(k,0)=(\ell,0)\Longrightarrow k=\ell.
 \]
 
-Para $(256,0)$, la cadena es
+Para $(256,0)$, armo la cadena
 \[
 (256,0),\ 256,\ (8,0),\ 8,\ (3,0),\ 3,\ (0,1).
 \]
-Tiene seis ancestros propios; su profundidad es par. Entonces
+Tiene seis ancestros propios, así que su profundidad es par y me toca usar $f$:
 \[
 \boxed{\phi((256,0))=f((256,0))=2^{256}}.
 \]
 
 Como $(5,3)$ no está en la imagen de $g$, no tiene ancestros y su profundidad es
-$0$. Por tanto,
+$0$. Así que
 \[
 \boxed{\phi((5,3))=f((5,3))=2^5 3^3=864}.
 \]
 
-En general, si $m\neq0$, la pareja $(n,m)$ no está en la imagen de $g$ y tiene
-profundidad $0$. Así,
+En general, si $m\neq0$, la pareja $(n,m)$ no está en la imagen de $g$ y su
+profundidad es $0$. Entonces
 \[
 \boxed{\phi((n,m))=2^n3^m\qquad(m\neq0)}.
 \]
-Si se mantiene literalmente la condición $m\neq1$, la fórmula anterior resuelve
-los casos $m\geq2$, pero el caso $m=0$ también satisface $m\neq1$ y requiere
-examinar la cadena individualmente.
+Si tomo literalmente la condición $m\neq1$, esta fórmula ya resuelve
+los casos $m\geq2$, pero el caso $m=0$ también cumple $m\neq1$ y me toca
+revisar su cadena por separado.
 
-Para $(5,0)$, la cadena es $(5,0),5$. No puede continuar porque no existen
-$r,s\in\N$ tales que $2^r3^s=5$. La profundidad es $1$, de modo que
+Para $(5,0)$, la cadena es $(5,0),5$, y ahí se corta porque no existen
+$r,s\in\N$ con $2^r3^s=5$. La profundidad es $1$, así que uso $g^{-1}$:
 \[
 \boxed{\phi((5,0))=g^{-1}((5,0))=5}.
 \]
 
-Finalmente, como $3^2=9$ y $2^9=512$, la cadena es
+Por último, como $3^2=9$ y $2^9=512$, la cadena queda
 \[
 (2^{512},0),\ 2^{512},\ (512,0),\ 512,\ (9,0),\ 9,\ (0,2).
 \]
-Tiene seis ancestros propios, por lo que usamos $f$:
+Tiene seis ancestros propios, así que uso $f$:
 \[
 \boxed{
 \phi\!\left(\left(2^{2^{3^2}},0\right)\right)
@@ -281,8 +281,9 @@ f^{-1}(Y):=\{x\in A:\exists y,\ y\in Y\text{ y }f(x)=y\}.
 \end{question}
 
 \begin{solution}
-\textbf{Observación sobre el enunciado.} El inciso (c) no es verdadero para una
-función arbitraria. La identidad válida sin hipótesis adicionales es
+\textbf{Observación sobre el enunciado.} Antes de empezar, noto que el inciso (c) no es
+verdadero para una función arbitraria. La identidad que sí vale sin hipótesis
+adicionales es
 \[
 f(f^{-1}(Y))=Y\cap f(A).
 \]
@@ -291,39 +292,38 @@ f(f^{-1}(Y))=Y\cap f(A).
 \[
 f(A)=\{f(n):n\in\N\}=\{n^2:n\in\N\}.
 \]
-Como $0\in\N$ en este taller,
+Como en este taller uso $0\in\N$, obtengo
 \[
 \boxed{f(A)=\{0,1,4,9,16,25,36,\ldots\}}.
 \]
 
-\textbf{(b)} Consideremos
+\textbf{(b)} Busco un contraejemplo. Tomo
 \[
 A=\{a,b,c\},\qquad B=\{0,1\},
 \]
-y la función definida por $f(a)=0$, $f(b)=0$ y $f(c)=1$. Tomemos $X=\{b\}$.
-Entonces
+con $f(a)=0$, $f(b)=0$ y $f(c)=1$, y elijo $X=\{b\}$. Entonces
 \[
 f(X)=\{0\},
 \qquad
 f^{-1}(f(X))=f^{-1}(\{0\})=\{a,b\}\neq\{b\}=X.
 \]
-Esto constituye un contraejemplo. Lo que siempre se cumple es
-$X\subseteq f^{-1}(f(X))$; la igualdad se obtiene, en particular, si $f$ es
+Con esto ya tengo mi contraejemplo. Lo que sí siempre se cumple es
+$X\subseteq f^{-1}(f(X))$; la igualdad se da, por ejemplo, si $f$ es
 inyectiva.
 
-\textbf{(c)} Tal como está escrito, el enunciado no puede demostrarse. Por ejemplo,
-sea
+\textbf{(c)} Primero verifico que, tal como está escrito, el enunciado no se puede
+demostrar. Sea
 \[
 A=\{a\},\qquad B=\{0,1\},\qquad f(a)=0,
 \]
-y tomemos $Y=\{1\}$. Entonces
+y tomo $Y=\{1\}$. Entonces
 \[
 f^{-1}(Y)=\varnothing,
 \qquad
 f(f^{-1}(Y))=\varnothing\neq\{1\}=Y.
 \]
 
-Demostremos la identidad correcta. Para $y\in B$,
+Ahora demuestro la identidad correcta. Para $y\in B$,
 \begin{align*}
 y\in f(f^{-1}(Y))
 &\Longleftrightarrow
@@ -333,16 +333,16 @@ y\in f(f^{-1}(Y))
 &\Longleftrightarrow y\in f(A)\text{ y }y\in Y\\
 &\Longleftrightarrow y\in Y\cap f(A).
 \end{align*}
-Así, por extensionalidad,
+Como esto vale para todo $y$, por extensionalidad concluyo que
 \[
 \boxed{f(f^{-1}(Y))=Y\cap f(A)}.
 \]
-En consecuencia, $f(f^{-1}(Y))=Y$ si $Y\subseteq f(A)$; en particular, la
-igualdad pedida se cumple para todo $Y\subseteq B$ cuando $f$ es sobreyectiva.
+De aquí se sigue que $f(f^{-1}(Y))=Y$ cuando $Y\subseteq f(A)$; en particular, la
+igualdad pedida se cumple para todo $Y\subseteq B$ si $f$ es sobreyectiva.
 \end{solution}
 
 \clearpage
-\section*{Answer Key}
+\section*{Soluciones}
 \printsolutions
 
 \end{document}
