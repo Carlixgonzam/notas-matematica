@@ -1,0 +1,23 @@
+# macOS
+.DS_Store
+
+# LaTeX build artifacts (se regeneran al compilar)
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.bbl
+*.bcf
+*.blg
+*.run.xml
+*.nav
+*.snm
+*.vrb
+*.synctex.gz
+
+# PDFs compilados
+*.pdf
