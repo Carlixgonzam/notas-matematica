@@ -1,0 +1,348 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{exsheets}
+
+\title{Taller II}
+\author{Curso: Matemática Estructural, Carla Gonzalez Mina}
+\date{Due: Lunes 31 Agosto, 2026}
+
+\SetupExSheets{
+  question/name = Ejercicio,
+  solution/name = Solución
+}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Pow}{\mathcal{P}}
+
+\begin{document}
+\maketitle
+
+\begin{question}
+Sean $A,B,C$ y $D$ conjuntos. Compare las siguientes parejas de conjuntos. Si son iguales, pruebe su afirmación por doble inclusión o por álgebra de conjuntos. Si uno de los dos conjuntos está contenido propiamente en el otro, pruebe la inclusión y muestre con un ejemplo que dicha inclusión es propia. Si son incomparables, muéstrelo con un contraejemplo.
+
+\begin{enumerate}
+  \item[(a)] $\Pow(A)\cap\Pow(B)$ y $\Pow(A\cap B)$.
+  \item[(b)] $(A\triangle B)\times C$ y $(A\times C)\triangle(B\times C)$.
+  \item[(c)] $(A\triangle B)\cup(C\triangle D)$ y $(A\cup C)\triangle(B\cup D)$.
+  \item[(d)] $A\setminus(B\cup C)$ y $(A\setminus B)\setminus C$.
+\end{enumerate}
+\end{question}
+
+\begin{solution}
+\textbf{(a)} cumplo con la igualdad
+\[
+\boxed{\Pow(A)\cap\Pow(B)=\Pow(A\cap B)}.
+\]
+se recuerda que $X\in\Pow(A)$ si y sólo si $X\subseteq A$. Para un conjunto arbitrario $X$ tenemos
+\begin{align*}
+X\in\Pow(A)\cap\Pow(B)
+&\Longleftrightarrow X\in\Pow(A)\text{ y }X\in\Pow(B)\\
+&\Longleftrightarrow X\subseteq A\text{ y }X\subseteq B\\
+&\Longleftrightarrow X\subseteq A\cap B\\
+&\Longleftrightarrow X\in\Pow(A\cap B).
+\end{align*}
+Así, por extensionalidad, concluimos que $\Pow(A)\cap\Pow(B)=\Pow(A\cap B)$.
+
+\textbf{(b)} Se cumple la igualdad
+\[
+\boxed{(A\triangle B)\times C=(A\times C)\triangle(B\times C)}.
+\]
+se recuerda que $X\triangle Y=(X\setminus Y)\cup(Y\setminus X)$. Por álgebra de conjuntos,
+\begin{align*}
+(A\triangle B)\times C
+&=[(A\setminus B)\cup(B\setminus A)]\times C\\
+&=[(A\setminus B)\times C]\cup[(B\setminus A)\times C]\\
+&=[(A\times C)\setminus(B\times C)]
+  \cup[(B\times C)\setminus(A\times C)]\\
+&=(A\times C)\triangle(B\times C).
+\end{align*}
+
+\textbf{(c)} En general,
+\[
+\boxed{(A\cup C)\triangle(B\cup D)
+\subseteq(A\triangle B)\cup(C\triangle D)},
+\]
+y la inclusión puede ser propia.
+
+Supongamos que $x\in(A\cup C)\triangle(B\cup D)$. Si
+$x\in(A\cup C)\setminus(B\cup D)$, entonces $x\in A\cup C$, pero
+$x\notin B$ y $x\notin D$. Si $x\in A$, entonces
+$x\in A\setminus B\subseteq A\triangle B$; si $x\in C$, entonces
+$x\in C\setminus D\subseteq C\triangle D$. Por tanto,
+$x\in(A\triangle B)\cup(C\triangle D)$. El caso
+$x\in(B\cup D)\setminus(A\cup C)$ es análogo. Esto demuestra la inclusión.
+
+Para ver que puede ser propia, tomo
+\[
+A=D=\{1\},\qquad B=C=\varnothing.
+\]
+Entonces
+\[
+(A\triangle B)\cup(C\triangle D)=\{1\},
+\]
+mientras que
+\[
+(A\cup C)\triangle(B\cup D)=\{1\}\triangle\{1\}=\varnothing.
+\]
+Por tanto, en este ejemplo la inclusión es propia.
+
+\textbf{(d)} Se cumple la igualdad
+\[
+\boxed{A\setminus(B\cup C)=(A\setminus B)\setminus C}.
+\]
+Considerando $A,B,C$ como subconjuntos de un universo, por las leyes de De Morgan,
+\begin{align*}
+A\setminus(B\cup C)
+&=A\cap(B\cup C)^c\\
+&=A\cap(B^c\cap C^c)\\
+&=(A\cap B^c)\cap C^c\\
+&=(A\setminus B)\setminus C.
+\end{align*}
+\end{solution}
+
+\begin{question}
+Decidan si la diferencia simétrica es asociativa o no:
+\[
+A\triangle(B\triangle C)=(A\triangle B)\triangle C.
+\]
+Si es asociativa, demuéstrelo. Si no, dé un contraejemplo.
+
+¿Se les ocurre una manera fácil de describir $A\triangle(B\triangle C)$? ¿Funciona para $(A\triangle D)\triangle(B\triangle C)$?
+\end{question}
+
+\begin{solution}
+La diferencia simétrica sí es asociativa:
+\[
+\boxed{A\triangle(B\triangle C)=(A\triangle B)\triangle C}.
+\]
+como  $x\in X\triangle Y$ si y sólo si $x$ pertenece exactamente a uno de $X$ y $Y$. defino
+\[
+E:=\{x:x\text{ pertenece a un número impar de los conjuntos }A,B,C\}.
+\]
+Para tres conjuntos, esto significa que $x$ pertenece exactamente a uno de ellos o a los tres. En forma explícita,
+\begin{align*}
+E={}&[A\setminus(B\cup C)]\cup[B\setminus(A\cup C)]
+\cup[C\setminus(A\cup B)]\\
+&\cup(A\cap B\cap C).
+\end{align*}
+
+Un elemento $x$ pertenece a $A\triangle(B\triangle C)$ si $x\in A$ y
+$x\notin B\triangle C$, o si $x\notin A$ y $x\in B\triangle C$.
+En el primer caso, $x$ pertenece a $A$ y a cero o dos de los conjuntos $B,C$;
+en el segundo, no pertenece a $A$ y pertenece exactamente a uno de $B,C$.
+En ambos casos pertenece a un número impar de $A,B,C$. El razonamiento es reversible, por lo que
+\[
+A\triangle(B\triangle C)=E.
+\]
+De manera análoga, $(A\triangle B)\triangle C=E$. Así, por extensionalidad, ambos conjuntos son iguales.
+
+La misma descripción funciona con cuatro conjuntos:
+\[
+\boxed{(A\triangle D)\triangle(B\triangle C)
+=\{x:x\text{ pertenece a un número impar de }A,B,C,D\}}.
+\]
+En este caso, ``un número impar'' significa exactamente uno o exactamente tres.
+\end{solution}
+
+\begin{question}
+Para este punto, recuerde cómo construíamos la biyección entre conjuntos dadas dos inyecciones $f$ y $g$: mirábamos la cadena más larga de ``ancestros'' y si era par, usábamos $f$ y si era impar usábamos $g^{-1}$. (Si no la recuerda y no entiende lo que dije, pregúntele a sus compañeros, o a Antonio, o a mí).
+
+\begin{enumerate}
+\item[(a)] Sea $A:=\{a_1,a_2,\ldots,a_n,\ldots\}$ y $B:=\{b_1,b_2,\ldots,b_n,\ldots\}$. Sea $f:A\to B$ definida por $f(a_i)=b_{i+1}$ y $g:B\to A$ definida por $f(b_i)=a_{i+1}$. Para cada $n\in\N$, decida si la ``cadena de ancestros'' de $a_n$ es par o impar, y si para la biyección $\phi$ que construimos tenemos que $\phi(a_n)=f(a_n)$ o si $\phi(a_n)=g^{-1}(a_n)$.
+
+\item[(b)] Sea $f:\N\times\N\to\N$ la función $f((m,n))=2^m3^n$ y sea $g:\N\to\N\times\N$ la función $g(n)=(n,0)$. De acuerdo al Teorema de Schröder--Bernstein, existe un $\phi:\N\times\N\to\N$ que es isomorfismo.
+
+\begin{itemize}
+  \item Recuerde la definición de $\phi$ (puede ser la que vimos o la del libro, pero debe ser explícita la que usa). Puede usar en su definición términos como ``$h(a)$'', ``ancestro de $a$'', o, si está siguiendo el texto de Forero, ``profundidad'' de $a$.
+  \item De acuerdo a la definición anterior, halle $\phi((256,0))$.
+  \item De acuerdo a la definición anterior, halle $\phi((5,3))$.
+  \item De acuerdo a la definición anterior, halle $\phi((n,m))$ para $m\neq1$.
+  \item De acuerdo a la definición anterior, halle $\phi((5,0))$.
+  \item De acuerdo a la definición anterior, halle
+  \[
+  \phi\!\left(\left(2^{2^{3^2}},0\right)\right).
+  \]
+\end{itemize}
+\end{enumerate}
+\end{question}
+
+\begin{solution}
+
+\textbf{Definición de la biyección.} Sean $f:A\to B$ y $g:B\to A$ inyectivas.
+Dado $y\in A\cup B$, decimos que $x$ es el ancestro de $y$ si
+\[
+y\in B\text{ y }f(x)=y,
+\qquad\text{o si}\qquad
+y\in A\text{ y }g(x)=y.
+\]
+Como $f$ y $g$ son inyectivas, cada elemento tiene a lo sumo un ancestro inmediato.
+Decimos que $a\in A$ tiene profundidad $k$ si su cadena
+\[
+a=x_0,x_1,\ldots,x_k
+\]
+tiene $k$ ancestros propios y $x_k$ no tiene ancestro. Si la cadena no termina,
+la profundidad es infinita. Definimos
+\begin{align*}
+X_{\mathrm{par}}&:=\{a\in A:a\text{ tiene profundidad par}\},\\
+X_{\mathrm{impar}}&:=\{a\in A:a\text{ tiene profundidad impar}\},\\
+X_{\infty}&:=\{a\in A:a\text{ tiene profundidad infinita}\}.
+\end{align*}
+La biyección está dada por
+\[
+\boxed{
+\phi(a)=
+\begin{cases}
+f(a),&a\in X_{\mathrm{par}}\cup X_{\infty},\\
+g^{-1}(a),&a\in X_{\mathrm{impar}}.
+\end{cases}}
+\]
+
+\textbf{(a)} Para $n\geq1$, la cadena de ancestros de $a_n$ es
+\[
+a_n,\ b_{n-1},\ a_{n-2},\ b_{n-3},\ldots
+\]
+y su profundidad es $n-1$. Si $n$ es impar, $n-1$ es par y usamos $f$;
+si $n$ es par, $n-1$ es impar y usamos $g^{-1}$. Por tanto,
+\[
+\boxed{
+\phi(a_n)=
+\begin{cases}
+b_{n+1},&n\text{ impar},\\
+b_{n-1},&n\text{ par}.
+\end{cases}}
+\]
+
+\textbf{(b)} En este punto $0\in\N$. La función $f$ es inyectiva: si
+$2^m3^n=2^r3^s$, la unicidad de la factorización prima implica que $m=r$ y
+$n=s$. La función $g$ también es inyectiva, pues
+\[
+g(k)=g(\ell)\Longrightarrow(k,0)=(\ell,0)\Longrightarrow k=\ell.
+\]
+
+Para $(256,0)$, la cadena es
+\[
+(256,0),\ 256,\ (8,0),\ 8,\ (3,0),\ 3,\ (0,1).
+\]
+Tiene seis ancestros propios; su profundidad es par. Entonces
+\[
+\boxed{\phi((256,0))=f((256,0))=2^{256}}.
+\]
+
+Como $(5,3)$ no está en la imagen de $g$, no tiene ancestros y su profundidad es
+$0$. Por tanto,
+\[
+\boxed{\phi((5,3))=f((5,3))=2^5 3^3=864}.
+\]
+
+En general, si $m\neq0$, la pareja $(n,m)$ no está en la imagen de $g$ y tiene
+profundidad $0$. Así,
+\[
+\boxed{\phi((n,m))=2^n3^m\qquad(m\neq0)}.
+\]
+Si se mantiene literalmente la condición $m\neq1$, la fórmula anterior resuelve
+los casos $m\geq2$, pero el caso $m=0$ también satisface $m\neq1$ y requiere
+examinar la cadena individualmente.
+
+Para $(5,0)$, la cadena es $(5,0),5$. No puede continuar porque no existen
+$r,s\in\N$ tales que $2^r3^s=5$. La profundidad es $1$, de modo que
+\[
+\boxed{\phi((5,0))=g^{-1}((5,0))=5}.
+\]
+
+Finalmente, como $3^2=9$ y $2^9=512$, la cadena es
+\[
+(2^{512},0),\ 2^{512},\ (512,0),\ 512,\ (9,0),\ 9,\ (0,2).
+\]
+Tiene seis ancestros propios, por lo que usamos $f$:
+\[
+\boxed{
+\phi\!\left(\left(2^{2^{3^2}},0\right)\right)
+=2^{2^{2^{3^2}}}=2^{2^{512}}}.
+\]
+\end{solution}
+
+\begin{question}
+Sea $f:A\to B$ una función. Para $X\subset A$ defina
+\[
+f(X):=\{y\in B:\exists x,\ x\in X\text{ y }f(x)=y\}.
+\]
+De igual manera, para $Y\subset B$ defina
+\[
+f^{-1}(Y):=\{x\in A:\exists y,\ y\in Y\text{ y }f(x)=y\}.
+\]
+
+\begin{enumerate}
+  \item[(a)] Sea $A=B=\N$, y sea $f(x)=x^2$. Halle $f(A)$.
+  \item[(b)] Halle un contraejemplo para la siguiente afirmación. Si $f$ es una función de $A$ en $B$ y $X\subset A$, entonces $f^{-1}(f(X))=X$.
+  \item[(c)] Demuestre, en cambio, la siguiente afirmación. Si $f$ es una función de $A$ en $B$ y $Y\subset B$, entonces $f(f^{-1}(Y))=Y$.
+\end{enumerate}
+\end{question}
+
+\begin{solution}
+\textbf{Observación sobre el enunciado.} El inciso (c) no es verdadero para una
+función arbitraria. La identidad válida sin hipótesis adicionales es
+\[
+f(f^{-1}(Y))=Y\cap f(A).
+\]
+
+\textbf{(a)} Por definición de imagen,
+\[
+f(A)=\{f(n):n\in\N\}=\{n^2:n\in\N\}.
+\]
+Como $0\in\N$ en este taller,
+\[
+\boxed{f(A)=\{0,1,4,9,16,25,36,\ldots\}}.
+\]
+
+\textbf{(b)} Consideremos
+\[
+A=\{a,b,c\},\qquad B=\{0,1\},
+\]
+y la función definida por $f(a)=0$, $f(b)=0$ y $f(c)=1$. Tomemos $X=\{b\}$.
+Entonces
+\[
+f(X)=\{0\},
+\qquad
+f^{-1}(f(X))=f^{-1}(\{0\})=\{a,b\}\neq\{b\}=X.
+\]
+Esto constituye un contraejemplo. Lo que siempre se cumple es
+$X\subseteq f^{-1}(f(X))$; la igualdad se obtiene, en particular, si $f$ es
+inyectiva.
+
+\textbf{(c)} Tal como está escrito, el enunciado no puede demostrarse. Por ejemplo,
+sea
+\[
+A=\{a\},\qquad B=\{0,1\},\qquad f(a)=0,
+\]
+y tomemos $Y=\{1\}$. Entonces
+\[
+f^{-1}(Y)=\varnothing,
+\qquad
+f(f^{-1}(Y))=\varnothing\neq\{1\}=Y.
+\]
+
+Demostremos la identidad correcta. Para $y\in B$,
+\begin{align*}
+y\in f(f^{-1}(Y))
+&\Longleftrightarrow
+\text{existe }x\in f^{-1}(Y)\text{ tal que }f(x)=y\\
+&\Longleftrightarrow
+\text{existe }x\in A\text{ tal que }f(x)=y\text{ y }f(x)\in Y\\
+&\Longleftrightarrow y\in f(A)\text{ y }y\in Y\\
+&\Longleftrightarrow y\in Y\cap f(A).
+\end{align*}
+Así, por extensionalidad,
+\[
+\boxed{f(f^{-1}(Y))=Y\cap f(A)}.
+\]
+En consecuencia, $f(f^{-1}(Y))=Y$ si $Y\subseteq f(A)$; en particular, la
+igualdad pedida se cumple para todo $Y\subseteq B$ cuando $f$ es sobreyectiva.
+\end{solution}
+
+\clearpage
+\section*{Answer Key}
+\printsolutions
+
+\end{document}
