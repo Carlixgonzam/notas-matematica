@@ -31,33 +31,84 @@ Sean $A,B,C$ y $D$ conjuntos. Compare las siguientes parejas de conjuntos. Si so
 \end{question}
 
 \begin{solution}
-\textbf{(a)} Voy a mostrar que se cumple la igualdad
+\textbf{(a)} Voy a demostrar por doble inclusión que
 \[
 \boxed{\Pow(A)\cap\Pow(B)=\Pow(A\cap B)}.
 \]
-Recuerdo que $X\in\Pow(A)$ si y sólo si $X\subseteq A$. Para un conjunto arbitrario $X$ tengo
-\begin{align*}
-X\in\Pow(A)\cap\Pow(B)
-&\Longleftrightarrow X\in\Pow(A)\text{ y }X\in\Pow(B)\\
-&\Longleftrightarrow X\subseteq A\text{ y }X\subseteq B\\
-&\Longleftrightarrow X\subseteq A\cap B\\
-&\Longleftrightarrow X\in\Pow(A\cap B).
-\end{align*}
-Como esto vale para todo $X$, por extensionalidad concluyo que $\Pow(A)\cap\Pow(B)=\Pow(A\cap B)$.
+Recuerdo que, para cualesquiera conjuntos $X$ y $Y$,
+\[
+X\in\Pow(Y)\Longleftrightarrow X\subseteq Y.
+\]
+
+$(\subseteq)$ Sea $X\in\Pow(A)\cap\Pow(B)$. Por definición de intersección,
+\[
+X\in\Pow(A)\qquad\text{y}\qquad X\in\Pow(B).
+\]
+Por definición del conjunto potencia, $X\subseteq A$ y $X\subseteq B$.
+Esto quiere decir que, para todo elemento $x$,
+\[
+x\in X\Longrightarrow x\in A\text{ y }x\in B.
+\]
+Por definición de intersección, $x\in A\cap B$. Por consiguiente,
+$X\subseteq A\cap B$, y nuevamente por definición del conjunto potencia,
+\[
+X\in\Pow(A\cap B).
+\]
+Como $X$ fue arbitrario, he demostrado que
+\[
+\Pow(A)\cap\Pow(B)\subseteq\Pow(A\cap B).
+\]
+
+$(\supseteq)$ Sea ahora $X\in\Pow(A\cap B)$. Entonces
+$X\subseteq A\cap B$. Como $A\cap B\subseteq A$ y $A\cap B\subseteq B$,
+por transitividad de la inclusión obtengo
+\[
+X\subseteq A\qquad\text{y}\qquad X\subseteq B.
+\]
+Por definición del conjunto potencia, $X\in\Pow(A)$ y $X\in\Pow(B)$; por
+definición de intersección,
+\[
+X\in\Pow(A)\cap\Pow(B).
+\]
+Esto demuestra que $\Pow(A\cap B)\subseteq\Pow(A)\cap\Pow(B)$.
+Concluyo por doble inclusión que
+\[
+\Pow(A)\cap\Pow(B)=\Pow(A\cap B).
+\]
 
 \textbf{(b)} También se cumple la igualdad
 \[
 \boxed{(A\triangle B)\times C=(A\times C)\triangle(B\times C)}.
 \]
-Recuerdo que $X\triangle Y=(X\setminus Y)\cup(Y\setminus X)$, así que uso álgebra de conjuntos:
+La demostraré siguiendo una pareja ordenada arbitraria. Sea $(x,y)$ una
+pareja cualquiera. Entonces
 \begin{align*}
-(A\triangle B)\times C
-&=[(A\setminus B)\cup(B\setminus A)]\times C\\
-&=[(A\setminus B)\times C]\cup[(B\setminus A)\times C]\\
-&=[(A\times C)\setminus(B\times C)]
-  \cup[(B\times C)\setminus(A\times C)]\\
-&=(A\times C)\triangle(B\times C).
+(x,y)\in(A\triangle B)\times C
+&\Longleftrightarrow x\in A\triangle B\text{ y }y\in C\\
+&\Longleftrightarrow
+  [(x\in A\text{ y }x\notin B)\text{ o }(x\in B\text{ y }x\notin A)]
+  \text{ y }y\in C.
 \end{align*}
+Distribuyendo la condición $y\in C$ entre los dos casos, esto equivale a
+\begin{align*}
+&[(x\in A,\ y\in C)\text{ y no ocurre }(x\in B,\ y\in C)]\\
+&\qquad\text{o}\quad
+[(x\in B,\ y\in C)\text{ y no ocurre }(x\in A,\ y\in C)].
+\end{align*}
+Por definición del producto cartesiano, la condición anterior dice que
+$(x,y)$ pertenece exactamente a uno de $A\times C$ y $B\times C$. Por
+definición de diferencia simétrica,
+\[
+(x,y)\in(A\times C)\triangle(B\times C).
+\]
+Todos los pasos anteriores son equivalencias, de modo que también se obtiene
+la implicación recíproca. Por tanto, para toda pareja $(x,y)$,
+\[
+(x,y)\in(A\triangle B)\times C
+\Longleftrightarrow
+(x,y)\in(A\times C)\triangle(B\times C).
+\]
+Por extensionalidad concluyo la igualdad requerida.
 
 \textbf{(c)} Aquí, en general, lo que tengo es
 \[
@@ -66,13 +117,41 @@ Recuerdo que $X\triangle Y=(X\setminus Y)\cup(Y\setminus X)$, así que uso álge
 \]
 y noto que la inclusión puede ser propia.
 
-Supongamos que $x\in(A\cup C)\triangle(B\cup D)$. Si
-$x\in(A\cup C)\setminus(B\cup D)$, entonces $x\in A\cup C$, pero
-$x\notin B$ y $x\notin D$. Si $x\in A$, entonces
-$x\in A\setminus B\subseteq A\triangle B$; si $x\in C$, entonces
-$x\in C\setminus D\subseteq C\triangle D$. En cualquier caso,
-$x\in(A\triangle B)\cup(C\triangle D)$. El caso
-$x\in(B\cup D)\setminus(A\cup C)$ es análogo, y con eso ya tengo la inclusión.
+Sea $x\in(A\cup C)\triangle(B\cup D)$. Por definición de diferencia
+simétrica, tengo exactamente dos casos.
+
+\emph{Caso 1.} Supongamos que
+\[
+x\in(A\cup C)\setminus(B\cup D).
+\]
+Entonces $x\in A\cup C$ y $x\notin B\cup D$. La segunda condición implica
+$x\notin B$ y $x\notin D$, mientras que la primera implica $x\in A$ o
+$x\in C$. Si $x\in A$, como $x\notin B$, se tiene
+$x\in A\setminus B\subseteq A\triangle B$. Si $x\in C$, como $x\notin D$,
+se tiene $x\in C\setminus D\subseteq C\triangle D$. En cualquiera de las dos
+posibilidades,
+\[
+x\in(A\triangle B)\cup(C\triangle D).
+\]
+
+\emph{Caso 2.} Supongamos que
+\[
+x\in(B\cup D)\setminus(A\cup C).
+\]
+Entonces $x\in B\cup D$ y $x\notin A\cup C$. Por las leyes de De Morgan,
+$x\notin A$ y $x\notin C$. Además, $x\in B$ o $x\in D$. Si $x\in B$,
+entonces $x\in B\setminus A\subseteq A\triangle B$; si $x\in D$, entonces
+$x\in D\setminus C\subseteq C\triangle D$. De nuevo,
+\[
+x\in(A\triangle B)\cup(C\triangle D).
+\]
+
+Como los dos casos posibles llevan al mismo conjunto, queda demostrada la
+inclusión
+\[
+(A\cup C)\triangle(B\cup D)
+\subseteq(A\triangle B)\cup(C\triangle D).
+\]
 
 Para ver que puede ser propia, tomo
 \[
@@ -86,7 +165,8 @@ mientras que
 \[
 (A\cup C)\triangle(B\cup D)=\{1\}\triangle\{1\}=\varnothing.
 \]
-Con este ejemplo veo que la inclusión sí puede ser propia.
+En particular, el elemento $1$ pertenece al conjunto de la derecha y no al
+conjunto de la izquierda. Por tanto, la inclusión anterior puede ser propia.
 
 \textbf{(d)} Aquí también se cumple la igualdad
 \[
@@ -95,11 +175,19 @@ Con este ejemplo veo que la inclusión sí puede ser propia.
 Pensando en $A,B,C$ como subconjuntos de un universo, aplico las leyes de De Morgan:
 \begin{align*}
 A\setminus(B\cup C)
-&=A\cap(B\cup C)^c\\
-&=A\cap(B^c\cap C^c)\\
-&=(A\cap B^c)\cap C^c\\
-&=(A\setminus B)\setminus C.
+&=A\cap(B\cup C)^c
+&&\text{(definición de diferencia)}\\
+&=A\cap(B^c\cap C^c)
+&&\text{(ley de De Morgan)}\\
+&=(A\cap B^c)\cap C^c
+&&\text{(asociatividad de la intersección)}\\
+&=(A\setminus B)\cap C^c
+&&\text{(definición de diferencia)}\\
+&=(A\setminus B)\setminus C
+&&\text{(definición de diferencia).}
 \end{align*}
+Cada paso es una igualdad válida para conjuntos, de modo que la primera y la
+última expresión representan el mismo conjunto.
 \end{solution}
 
 \begin{question}
@@ -113,11 +201,12 @@ Si es asociativa, demuéstrelo. Si no, dé un contraejemplo.
 \end{question}
 
 \begin{solution}
-Creo que la diferencia simétrica sí es asociativa:
+La diferencia simétrica sí es asociativa:
 \[
 \boxed{A\triangle(B\triangle C)=(A\triangle B)\triangle C}.
 \]
-Sé que $x\in X\triangle Y$ si y sólo si $x$ pertenece exactamente a uno de $X$ y $Y$, así que defino
+Por definición, $x\in X\triangle Y$ si y sólo si $x$ pertenece exactamente a
+uno de $X$ y $Y$. Defino
 \[
 E:=\{x:x\text{ pertenece a un número impar de los conjuntos }A,B,C\}.
 \]
@@ -128,22 +217,67 @@ E={}&[A\setminus(B\cup C)]\cup[B\setminus(A\cup C)]
 &\cup(A\cap B\cap C).
 \end{align*}
 
-Ahora reviso $A\triangle(B\triangle C)$: un elemento $x$ pertenece a este conjunto si $x\in A$ y
-$x\notin B\triangle C$, o si $x\notin A$ y $x\in B\triangle C$.
-En el primer caso, $x$ pertenece a $A$ y a cero o dos de los conjuntos $B,C$;
-en el segundo, no pertenece a $A$ y pertenece exactamente a uno de $B,C$.
-En ambos casos, $x$ pertenece a un número impar de $A,B,C$, y el razonamiento se puede devolver, así que
+Voy a demostrar que ambos lados son iguales a $E$.
+
+Primero, sea $x\in A\triangle(B\triangle C)$. Por definición de diferencia
+simétrica ocurre exactamente uno de los siguientes casos:
+\begin{enumerate}
+  \item $x\in A$ y $x\notin B\triangle C$;
+  \item $x\notin A$ y $x\in B\triangle C$.
+\end{enumerate}
+En el primer caso, $x$ pertenece a $A$ y pertenece a cero o a dos de los
+conjuntos $B,C$; en total pertenece a uno o a tres de $A,B,C$. En el segundo
+caso, no pertenece a $A$ y pertenece exactamente a uno de $B,C$; en total
+pertenece a uno de los tres conjuntos. En cualquier caso, $x\in E$. Esto prueba
+que
+\[
+A\triangle(B\triangle C)\subseteq E.
+\]
+
+Para la inclusión contraria, sea $x\in E$. Si $x\in A$, entonces el número de
+pertenencias de $x$ entre $B,C$ debe ser par: pertenece a ambos o a ninguno.
+Por tanto, $x\notin B\triangle C$, y así
+$x\in A\triangle(B\triangle C)$. Si $x\notin A$, para que el número total de
+pertenencias sea impar, $x$ debe pertenecer exactamente a uno de $B,C$; esto es,
+$x\in B\triangle C$. De nuevo, $x\in A\triangle(B\triangle C)$. Así,
+\[
+E\subseteq A\triangle(B\triangle C),
+\]
+y por doble inclusión,
 \[
 A\triangle(B\triangle C)=E.
 \]
-El mismo argumento, aplicado en otro orden, me da $(A\triangle B)\triangle C=E$. Como ambos coinciden con $E$, por extensionalidad son iguales.
 
-Me doy cuenta de que la misma descripción funciona con cuatro conjuntos:
+Ahora considero el otro lado. Un elemento $x$ pertenece a
+$(A\triangle B)\triangle C$ si y sólo si ocurre uno de estos dos casos:
+\begin{enumerate}
+  \item $x\in A\triangle B$ y $x\notin C$;
+  \item $x\notin A\triangle B$ y $x\in C$.
+\end{enumerate}
+En el primer caso, $x$ pertenece exactamente a uno de $A,B$ y no pertenece a
+$C$, de modo que tiene una pertenencia en total. En el segundo caso, pertenece
+a cero o a dos de $A,B$ y también pertenece a $C$, de modo que tiene una o tres
+pertenencias en total. Recíprocamente, si $x$ pertenece a un número impar de
+$A,B,C$, al separar la pertenencia a $C$ se obtiene necesariamente uno de esos
+dos casos. Por consiguiente,
+\[
+(A\triangle B)\triangle C=E.
+\]
+Como ambos lados son iguales a $E$, por transitividad de la igualdad concluyo
+que
+\[
+A\triangle(B\triangle C)=(A\triangle B)\triangle C.
+\]
+
+La misma descripción funciona con cuatro conjuntos:
 \[
 \boxed{(A\triangle D)\triangle(B\triangle C)
 =\{x:x\text{ pertenece a un número impar de }A,B,C,D\}}.
 \]
 Aquí, ``un número impar'' significa exactamente uno o exactamente tres.
+En efecto, cada diferencia simétrica registra la paridad de las pertenencias:
+dos apariciones se cancelan y una aparición permanece. Por eso agrupar los
+cuatro conjuntos en parejas no cambia la paridad total.
 \end{solution}
 
 \begin{question}
@@ -170,7 +304,17 @@ Para este punto, recuerde cómo construíamos la biyección entre conjuntos dada
 
 \begin{solution}
 
-\textbf{Definición de la biyección.} Tomo $f:A\to B$ y $g:B\to A$ inyectivas.
+\textbf{Observación sobre el enunciado.} En el inciso (a), la expresión
+``$g:B\to A$ definida por $f(b_i)=a_{i+1}$'' debe leerse como
+\[
+g(b_i)=a_{i+1},
+\]
+porque $b_i\in B$ y la función que tiene dominio $B$ es $g$. En el inciso (b),
+la condición impresa $m\neq1$ parece ser una errata; la condición compatible
+con $g(n)=(n,0)$ es $m\neq0$. Más adelante explico qué sucede si se conserva
+la lectura literal.
+
+\textbf{Definición de la biyección.} Sean $f:A\to B$ y $g:B\to A$ inyectivas.
 Dado $y\in A\cup B$, digo que $x$ es el ancestro de $y$ si
 \[
 y\in B\text{ y }f(x)=y,
@@ -198,13 +342,39 @@ f(a),&a\in X_{\mathrm{par}}\cup X_{\infty},\\
 g^{-1}(a),&a\in X_{\mathrm{impar}}.
 \end{cases}}
 \]
+La segunda rama está bien definida: si $a$ tiene profundidad impar, su cadena
+tiene por lo menos un ancestro; como $a\in A$, ese ancestro es un elemento
+$b\in B$ tal que $g(b)=a$. Por tanto, existe $g^{-1}(a)=b$.
 
-\textbf{(a)} Para $n\geq1$, calculo la cadena de ancestros de $a_n$:
+\textbf{(a)} Para $n\geq1$, el primer ancestro de $a_n$ es $b_{n-1}$ cuando
+$n\geq2$, porque
+\[
+g(b_{n-1})=a_n.
+\]
+El ancestro de $b_{n-1}$ es $a_{n-2}$ cuando $n\geq3$, porque
+\[
+f(a_{n-2})=b_{n-1}.
+\]
+Continuando alternadamente con $g^{-1}$ y $f^{-1}$, obtengo la cadena
 \[
 a_n,\ b_{n-1},\ a_{n-2},\ b_{n-3},\ldots
 \]
-y su profundidad es $n-1$. Si $n$ es impar, $n-1$ es par y me toca usar $f$;
-si $n$ es par, $n-1$ es impar y me toca usar $g^{-1}$. Entonces,
+Si $n$ es impar, la cadena termina en $a_1$; este elemento no tiene ancestro
+porque no existe un índice $0$ con $g(b_0)=a_1$. Si $n$ es par, la cadena
+termina en $b_1$, que tampoco tiene ancestro porque no existe $a_0$ con
+$f(a_0)=b_1$. En ambos casos hay exactamente $n-1$ ancestros propios, de modo
+que la profundidad de $a_n$ es $n-1$.
+
+Si $n$ es impar, $n-1$ es par y uso $f$:
+\[
+\phi(a_n)=f(a_n)=b_{n+1}.
+\]
+Si $n$ es par, $n-1$ es impar y uso $g^{-1}$. Como
+$g(b_{n-1})=a_n$, se tiene
+\[
+\phi(a_n)=g^{-1}(a_n)=b_{n-1}.
+\]
+Por tanto,
 \[
 \boxed{
 \phi(a_n)=
@@ -214,39 +384,64 @@ b_{n-1},&n\text{ par}.
 \end{cases}}
 \]
 
-\textbf{(b)} Aquí $0\in\N$. Reviso que $f$ es inyectiva: si
-$2^m3^n=2^r3^s$, la unicidad de la factorización prima me da $m=r$ y
-$n=s$. También reviso que $g$ es inyectiva, pues
+\textbf{(b)} Aquí $0\in\N$. Antes de aplicar la construcción, verifico las
+inyecciones. Sean $(m,n),(r,s)\in\N\times\N$ y supongamos que
+\[
+f((m,n))=f((r,s)).
+\]
+Entonces $2^m3^n=2^r3^s$. Por la unicidad de la factorización en números
+primos, los exponentes de $2$ y de $3$ deben coincidir: $m=r$ y $n=s$. Así,
+$(m,n)=(r,s)$, lo cual demuestra que $f$ es inyectiva. Para $g$, si
+$g(k)=g(\ell)$, entonces
 \[
 g(k)=g(\ell)\Longrightarrow(k,0)=(\ell,0)\Longrightarrow k=\ell.
 \]
+Por tanto, $g$ también es inyectiva.
 
-Para $(256,0)$, armo la cadena
+Para $(256,0)$, construyo la cadena
 \[
 (256,0),\ 256,\ (8,0),\ 8,\ (3,0),\ 3,\ (0,1).
 \]
-Tiene seis ancestros propios, así que su profundidad es par y me toca usar $f$:
+Cada paso se justifica mediante
+\[
+g(256)=(256,0),\quad f((8,0))=2^8=256,\quad g(8)=(8,0),
+\]
+\[
+f((3,0))=2^3=8,\quad g(3)=(3,0),\quad f((0,1))=3.
+\]
+La cadena termina en $(0,1)$ porque este elemento no está en la imagen de $g$:
+todo elemento de $g(\N)$ tiene segunda coordenada $0$. Hay seis ancestros
+propios, de modo que la profundidad es $6$, que es par. Por definición de
+$\phi$, uso $f$:
 \[
 \boxed{\phi((256,0))=f((256,0))=2^{256}}.
 \]
 
-Como $(5,3)$ no está en la imagen de $g$, no tiene ancestros y su profundidad es
-$0$. Así que
+Como $(5,3)$ tiene segunda coordenada $3\neq0$, no pertenece a la imagen de
+$g$, que es $\N\times\{0\}$. Por tanto, no tiene ancestros y su profundidad es
+$0$, que es par. En consecuencia,
 \[
 \boxed{\phi((5,3))=f((5,3))=2^5 3^3=864}.
 \]
 
-En general, si $m\neq0$, la pareja $(n,m)$ no está en la imagen de $g$ y su
-profundidad es $0$. Entonces
+En general, si $m\neq0$, la pareja $(n,m)$ no está en la imagen de $g$, pues
+ningún valor de $g$ tiene segunda coordenada distinta de $0$. Así, $(n,m)$ no
+tiene ancestros, su profundidad es $0$ y corresponde usar $f$:
 \[
 \boxed{\phi((n,m))=2^n3^m\qquad(m\neq0)}.
 \]
-Si tomo literalmente la condición $m\neq1$, esta fórmula ya resuelve
-los casos $m\geq2$, pero el caso $m=0$ también cumple $m\neq1$ y me toca
-revisar su cadena por separado.
+Si se conserva literalmente la condición $m\neq1$, esta fórmula resuelve
+los casos $m\geq2$, pero el caso $m=0$ también satisface $m\neq1$ y requiere
+examinar su cadena por separado.
 
-Para $(5,0)$, la cadena es $(5,0),5$, y ahí se corta porque no existen
-$r,s\in\N$ con $2^r3^s=5$. La profundidad es $1$, así que uso $g^{-1}$:
+Para $(5,0)$, el primer ancestro es $5$, porque $g(5)=(5,0)$. La cadena es
+\[
+(5,0),\ 5.
+\]
+Para continuar sería necesario encontrar $(r,s)\in\N\times\N$ tal que
+$f((r,s))=5$, es decir, $2^r3^s=5$. Esto es imposible por la factorización
+prima de $5$. Por tanto, $5$ no tiene ancestro y la profundidad de $(5,0)$ es
+$1$, que es impar. Debo usar $g^{-1}$:
 \[
 \boxed{\phi((5,0))=g^{-1}((5,0))=5}.
 \]
@@ -255,7 +450,18 @@ Por último, como $3^2=9$ y $2^9=512$, la cadena queda
 \[
 (2^{512},0),\ 2^{512},\ (512,0),\ 512,\ (9,0),\ 9,\ (0,2).
 \]
-Tiene seis ancestros propios, así que uso $f$:
+Los pasos se justifican porque
+\[
+g(2^{512})=(2^{512},0),\quad f((512,0))=2^{512},
+\]
+\[
+g(512)=(512,0),\quad f((9,0))=2^9=512,
+\]
+\[
+g(9)=(9,0),\quad f((0,2))=3^2=9.
+\]
+La cadena termina en $(0,2)$ porque su segunda coordenada no es $0$. Tiene seis
+ancestros propios; por tanto, su profundidad es par y corresponde usar $f$:
 \[
 \boxed{
 \phi\!\left(\left(2^{2^{3^2}},0\right)\right)
@@ -301,29 +507,41 @@ Como en este taller uso $0\in\N$, obtengo
 \[
 A=\{a,b,c\},\qquad B=\{0,1\},
 \]
-con $f(a)=0$, $f(b)=0$ y $f(c)=1$, y elijo $X=\{b\}$. Entonces
+con $f(a)=0$, $f(b)=0$ y $f(c)=1$. Esta regla define una función
+$f:A\to B$, pues a cada elemento de $A$ le asigna exactamente un elemento de
+$B$. Elijo $X=\{b\}$. Como el único elemento de $X$ es $b$ y $f(b)=0$,
 \[
-f(X)=\{0\},
-\qquad
-f^{-1}(f(X))=f^{-1}(\{0\})=\{a,b\}\neq\{b\}=X.
+f(X)=\{f(b)\}=\{0\}.
 \]
-Con esto ya tengo mi contraejemplo. Lo que sí siempre se cumple es
-$X\subseteq f^{-1}(f(X))$; la igualdad se da, por ejemplo, si $f$ es
-inyectiva.
+Ahora,
+\[
+f^{-1}(f(X))=f^{-1}(\{0\})
+=\{x\in A:f(x)=0\}=\{a,b\}.
+\]
+Como $\{a,b\}\neq\{b\}=X$, se obtiene
+\[
+f^{-1}(f(X))\neq X.
+\]
+Este ejemplo refuta la afirmación universal.
 
-\textbf{(c)} Primero verifico que, tal como está escrito, el enunciado no se puede
-demostrar. Sea
+La inclusión que siempre se cumple es $X\subseteq f^{-1}(f(X))$: si $x\in X$,
+entonces $f(x)\in f(X)$ por definición de imagen, y por definición de imagen
+inversa esto implica que $x\in f^{-1}(f(X))$. La igualdad puede fallar porque
+un elemento exterior a $X$ puede tener la misma imagen que un elemento de $X$,
+como ocurre con $a$ y $b$ en el contraejemplo.
+
+\textbf{(c)} Tal como está escrito, el enunciado no se puede demostrar. Sea
 \[
 A=\{a\},\qquad B=\{0,1\},\qquad f(a)=0,
 \]
-y tomo $Y=\{1\}$. Entonces
+y sea $Y=\{1\}$. Entonces
 \[
 f^{-1}(Y)=\varnothing,
 \qquad
 f(f^{-1}(Y))=\varnothing\neq\{1\}=Y.
 \]
 
-Ahora demuestro la identidad correcta. Para $y\in B$,
+Ahora demuestro la identidad correcta. Sea $y\in B$. Entonces
 \begin{align*}
 y\in f(f^{-1}(Y))
 &\Longleftrightarrow
@@ -339,6 +557,9 @@ Como esto vale para todo $y$, por extensionalidad concluyo que
 \]
 De aquí se sigue que $f(f^{-1}(Y))=Y$ cuando $Y\subseteq f(A)$; en particular, la
 igualdad pedida se cumple para todo $Y\subseteq B$ si $f$ es sobreyectiva.
+En efecto, si $Y\subseteq f(A)$, entonces $Y\cap f(A)=Y$. Si $f$ es
+sobreyectiva, $f(A)=B$, y como $Y\subseteq B$, automáticamente
+$Y\subseteq f(A)$.
 \end{solution}
 
 \clearpage
