@@ -1,0 +1,99 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{amsmath, amssymb}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Pow}{\mathcal{P}}
+
+\begin{document}
+
+Decidan si la diferencia simétrica es asociativa o no:
+\[
+A\triangle(B\triangle C)=(A\triangle B)\triangle C.
+\]
+Si es asociativa, demuéstrelo. Si no, dé un contraejemplo.
+
+¿Se les ocurre una manera fácil de describir $A\triangle(B\triangle C)$? ¿Funciona para $(A\triangle D)\triangle(B\triangle C)$?
+
+\bigskip
+
+La diferencia simétrica sí es asociativa:
+\[
+\boxed{A\triangle(B\triangle C)=(A\triangle B)\triangle C}.
+\]
+Por definición, $x\in X\triangle Y$ si y sólo si $x$ pertenece exactamente a
+uno de $X$ y $Y$. Defino
+\[
+E:=\{x:x\text{ pertenece a un número impar de los conjuntos }A,B,C\}.
+\]
+Para tres conjuntos, esto significa que $x$ pertenece exactamente a uno de ellos o a los tres. Escrito de forma explícita,
+\begin{align*}
+E={}&[A\setminus(B\cup C)]\cup[B\setminus(A\cup C)]
+\cup[C\setminus(A\cup B)]\\
+&\cup(A\cap B\cap C).
+\end{align*}
+
+Voy a demostrar que ambos lados son iguales a $E$.
+
+Primero, sea $x\in A\triangle(B\triangle C)$. Por definición de diferencia
+simétrica ocurre exactamente uno de los siguientes casos:
+\begin{enumerate}
+  \item $x\in A$ y $x\notin B\triangle C$;
+  \item $x\notin A$ y $x\in B\triangle C$.
+\end{enumerate}
+En el primer caso, $x$ pertenece a $A$ y pertenece a cero o a dos de los
+conjuntos $B,C$; en total pertenece a uno o a tres de $A,B,C$. En el segundo
+caso, no pertenece a $A$ y pertenece exactamente a uno de $B,C$; en total
+pertenece a uno de los tres conjuntos. En cualquier caso, $x\in E$. Esto prueba
+que
+\[
+A\triangle(B\triangle C)\subseteq E.
+\]
+
+Para la inclusión contraria, sea $x\in E$. Si $x\in A$, entonces el número de
+pertenencias de $x$ entre $B,C$ debe ser par: pertenece a ambos o a ninguno.
+Por tanto, $x\notin B\triangle C$, y así
+$x\in A\triangle(B\triangle C)$. Si $x\notin A$, para que el número total de
+pertenencias sea impar, $x$ debe pertenecer exactamente a uno de $B,C$; esto es,
+$x\in B\triangle C$. De nuevo, $x\in A\triangle(B\triangle C)$. Así,
+\[
+E\subseteq A\triangle(B\triangle C),
+\]
+y por doble inclusión,
+\[
+A\triangle(B\triangle C)=E.
+\]
+
+Ahora considero el otro lado. Un elemento $x$ pertenece a
+$(A\triangle B)\triangle C$ si y sólo si ocurre uno de estos dos casos:
+\begin{enumerate}
+  \item $x\in A\triangle B$ y $x\notin C$;
+  \item $x\notin A\triangle B$ y $x\in C$.
+\end{enumerate}
+En el primer caso, $x$ pertenece exactamente a uno de $A,B$ y no pertenece a
+$C$, de modo que tiene una pertenencia en total. En el segundo caso, pertenece
+a cero o a dos de $A,B$ y también pertenece a $C$, de modo que tiene una o tres
+pertenencias en total. Recíprocamente, si $x$ pertenece a un número impar de
+$A,B,C$, al separar la pertenencia a $C$ se obtiene necesariamente uno de esos
+dos casos. Por consiguiente,
+\[
+(A\triangle B)\triangle C=E.
+\]
+Como ambos lados son iguales a $E$, por transitividad de la igualdad concluyo
+que
+\[
+A\triangle(B\triangle C)=(A\triangle B)\triangle C.
+\]
+
+La misma descripción funciona con cuatro conjuntos:
+\[
+\boxed{(A\triangle D)\triangle(B\triangle C)
+=\{x:x\text{ pertenece a un número impar de }A,B,C,D\}}.
+\]
+Aquí, ``un número impar'' significa exactamente uno o exactamente tres.
+En efecto, cada diferencia simétrica registra la paridad de las pertenencias:
+dos apariciones se cancelan y una aparición permanece. Por eso agrupar los
+cuatro conjuntos en parejas no cambia la paridad total.
+
+\end{document}
